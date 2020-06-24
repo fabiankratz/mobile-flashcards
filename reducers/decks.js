@@ -1,34 +1,14 @@
 import cards from './cards'
+import { LOAD_LOCAL_DATA } from '../actions'
 
-const initialState = {
-    React: {
-        title: 'React',
-        questions: [
-        {
-            question: 'What is React?',
-            answer: 'A library for managing user interfaces'
-        },
-        {
-            question: 'Where do you make Ajax requests in React?',
-            answer: 'The componentDidMount lifecycle event'
-        }
-        ]
-    },
-    JavaScript: {
-        title: 'JavaScript',
-        questions: [
-        {
-            question: 'What is a closure?',
-            answer: 'The combination of a function and the lexical environment within which that function was declared.'
-        }
-        ]
-    }
-}
-
-export default (state = initialState, { type, payload }) => {
+export default (state = {}, { type, payload }) => {
     switch (type) {
-        
+        case LOAD_LOCAL_DATA:
+            return {
+                ...state,
+                ...payload
+            }
         default:
-            return {state}
+            return state
     }
 }

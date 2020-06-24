@@ -5,7 +5,7 @@ import middleware from './middleware'
 import reducer from './reducers'
 import Main from './components/Main'
 
-const store = createStore(reducer, middleware)
+const store = createStore(reducer, {}, middleware)
 
 export default function App() {
   return (

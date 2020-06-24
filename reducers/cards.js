@@ -1,8 +1,4 @@
-const initialState = {
-
-}
-
-export default (state = initialState, { type, payload }) => {
+export default (state = [], { type, payload }) => {
     switch (type) {
 
     default:

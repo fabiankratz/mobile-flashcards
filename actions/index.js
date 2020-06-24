@@ -1,0 +1,2 @@
+export const LOAD_LOCAL_DATA = 'LOAD_LOCAL_DATA'
+export const SAVE_DECK_TITLE = 'SAVE_DECK_TITLE'
