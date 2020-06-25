@@ -2,15 +2,13 @@ import React, {useEffect} from 'react'
 import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { handleLoadLocalData } from '../actions/shared'
-import { handleSaveDeckTitle } from '../actions/decks'
+import { loadLocalData } from '../actions/shared'
 
 export const Main = (props) => {
-    const {loadLocalData, saveDeckTitle} = props
+    const {loadLocalData}  = props
     useEffect(() => {
-        saveDeckTitle("test")
         loadLocalData()
-    }, [loadLocalData, saveDeckTitle])
+    }, [loadLocalData])
     return (
         <Text>
             {JSON.stringify(props)}
@@ -26,9 +24,9 @@ const mapStateToProps = (state) => ({
     ...state
 })
 
-const mapDispatchToProps = dispatch => ({
-    loadLocalData: () => dispatch(handleLoadLocalData()),
-    saveDeckTitle: (title) => dispatch(handleSaveDeckTitle(title))
-})
+const mapDispatchToProps = {
+    loadLocalData
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
+

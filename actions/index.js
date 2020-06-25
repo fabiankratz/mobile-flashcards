@@ -1,2 +1,4 @@
 export const LOAD_LOCAL_DATA = 'LOAD_LOCAL_DATA'
+export const SET_LOCAL_DATA = 'SET_LOCAL_DATA'
 export const SAVE_DECK_TITLE = 'SAVE_DECK_TITLE'
+export const ADD_CARD = 'ADD_CARD'

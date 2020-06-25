@@ -1,7 +1,11 @@
+import { ADD_CARD } from '../actions'
+
 export default (state = [], { type, payload }) => {
     switch (type) {
-
-    default:
-        return state
+        case ADD_CARD:
+            state.push(payload.card)
+            return state
+        default:
+            return state
     }
 }
