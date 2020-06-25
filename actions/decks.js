@@ -1,4 +1,4 @@
-import { SAVE_DECK_TITLE, REMOVE_DECK_TITLE } from './'
+import { SAVE_DECK_TITLE, REMOVE_DECK_TITLE, SAVE_DECK_TITLE_ASYNC } from './'
 
 export function saveDeckTitle (title) {
     return {
@@ -8,6 +8,16 @@ export function saveDeckTitle (title) {
         }
     }
 }
+
+export function saveDeckTitleAsync (title) {
+    return {
+        type: SAVE_DECK_TITLE_ASYNC,
+        payload: {
+            title
+        }
+    }
+}
+
 
 export function removeDeckTitle (title) {
     return {

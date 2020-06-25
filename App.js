@@ -5,8 +5,9 @@ import middleware, { sagaMiddleware } from './middleware'
 import reducer from './reducers'
 import Main from './components/Main'
 import rootSaga from './sagas'
+import {composeWithDevTools } from 'redux-devtools-extension'
 
-const store = createStore(reducer, middleware)
+const store = createStore(reducer, composeWithDevTools(middleware))
 
 sagaMiddleware.run(rootSaga)
 
