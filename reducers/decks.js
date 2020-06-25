@@ -4,9 +4,10 @@ import { LOAD_LOCAL_DATA, ADD_CARD } from '../actions'
 export default (state = {}, { type, payload }) => {
     switch (type) {
         case LOAD_LOCAL_DATA:
-            return {
-                ...state,
-                ...payload
+            if (payload.decks) {
+                return payload.decks
+            } else {
+                return state
             }
         case ADD_CARD:
             return {
