@@ -4,7 +4,12 @@ const APP_STORE_KEY = '@mobile-flashcards:'
 
 export default deviceStorage = {
     getData: async function () {
-        const result = await AsyncStorage.getItem(APP_STORE_KEY)
+        const quiz = await this.getQuiz()
+        const decks = await this.getDecks()
+        return {quiz: quiz || null, decks: decks || null}
+    },
+    getDecks: async function () {
+        const result = await AsyncStorage.getItem(APP_STORE_KEY + 'decks')
         return result !== null && JSON.parse(result)
     },
     saveDeckTitle: async function (title) {
@@ -48,13 +53,13 @@ export default deviceStorage = {
     startQuiz: async function (title) {
         await AsyncStorage.mergeItem(
             APP_STORE_KEY + 'quiz',
-            JSON.parse({title})
+            JSON.stringify({title, results: []})
         )
     },
     endQuiz: async function () {
         await AsyncStorage.mergeItem(
             APP_STORE_KEY + 'quiz',
-            JSON.parse({title: "", results: []})
+            JSON.stringify({title: "", results: []})
         )
     },
     clearDecks: async function () {

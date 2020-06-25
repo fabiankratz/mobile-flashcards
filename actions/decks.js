@@ -1,4 +1,4 @@
-import { SAVE_DECK_TITLE } from './'
+import { SAVE_DECK_TITLE, REMOVE_DECK_TITLE } from './'
 
 export function saveDeckTitle (title) {
     return {
@@ -6,5 +6,12 @@ export function saveDeckTitle (title) {
         payload: {
             title
         }
+    }
+}
+
+export function removeDeckTitle (title) {
+    return {
+        type: REMOVE_DECK_TITLE,
+        payload: {title}
     }
 }
