@@ -1,17 +1,18 @@
 import { takeLeading, all, put, call } from 'redux-saga/effects'
 import { LOAD_LOCAL_DATA_ASYNC } from '../actions'
-import { loadLocalData } from '../actions/shared'
+import { loadLocalData, startLoading, finishLoading } from '../actions/shared'
 import deviceStorage from '../utils/api'
 
 function* loadLocalDataWorker () {
+    let decks;
+    yield put(startLoading())
     try {
-        yield call([deviceStorage, 'clearDecks'])
-        yield call([deviceStorage, 'saveDeckTitle'], "test")
-        yield call([deviceStorage, 'addCardToDeck'], "test", {question: "testkjlt?", answer:"jekjelksjr"})
-        const decks = yield call([deviceStorage, 'getDecks'])
-        yield put(loadLocalData(decks || {}))
+        decks = yield call([deviceStorage, 'getDecks'])
     } catch (e) {
         console.log(e)
+    } finally {
+        yield put(loadLocalData(decks || {}))
+        yield put(finishLoading())
     }
 }
 
