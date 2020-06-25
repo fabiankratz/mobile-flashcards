@@ -2,13 +2,13 @@ import React, {useEffect} from 'react'
 import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { loadLocalData } from '../actions/shared'
+import { loadLocalDataAsync } from '../actions/shared'
 
 export const Main = (props) => {
-    const {loadLocalData}  = props
+    const {loadLocalDataAsync}  = props
     useEffect(() => {
-        loadLocalData()
-    }, [loadLocalData])
+        loadLocalDataAsync()
+    }, [loadLocalDataAsync])
     return (
         <Text>
             {JSON.stringify(props)}
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    loadLocalData
+    loadLocalDataAsync
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)

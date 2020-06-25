@@ -1,25 +1,26 @@
-import { takeLeading, all, put } from 'redux-saga/effects'
-import { LOAD_LOCAL_DATA } from '../actions'
-import { setLocalData } from '../actions/shared'
+import { takeLeading, all, put, call } from 'redux-saga/effects'
+import { LOAD_LOCAL_DATA_ASYNC } from '../actions'
+import { loadLocalData } from '../actions/shared'
 import deviceStorage from '../utils/api'
 
-function* loadLocalData () {
+function* loadLocalDataWorker () {
     try {
-        yield deviceStorage.saveDeckTitle("test") 
-        yield deviceStorage.addCardToDeck("test", {question: "testkjlt?", answer:"jekjelksjr"})
-        const decks = yield deviceStorage.getDecks()
-        yield put(setLocalData({decks}))
+        yield call([deviceStorage, 'clearDecks'])
+        yield call([deviceStorage, 'saveDeckTitle'], "test")
+        yield call([deviceStorage, 'addCardToDeck'], "test", {question: "testkjlt?", answer:"jekjelksjr"})
+        const decks = yield call([deviceStorage, 'getDecks'])
+        yield put(loadLocalData(decks || {}))
     } catch (e) {
         console.log(e)
     }
 }
 
-function* watchLoadLocalData () {
-    yield takeLeading(LOAD_LOCAL_DATA, loadLocalData)
+function* loadLocalDataWatcher () {
+    yield takeLeading(LOAD_LOCAL_DATA_ASYNC, loadLocalDataWorker)
 }
 
 export default function* () {
     yield all([
-        watchLoadLocalData()
+        loadLocalDataWatcher()
     ])
 }

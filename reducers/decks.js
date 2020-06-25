@@ -1,9 +1,9 @@
 import cards from './cards'
-import { SET_LOCAL_DATA, ADD_CARD } from '../actions'
+import { LOAD_LOCAL_DATA, ADD_CARD } from '../actions'
 
 export default (state = {}, { type, payload }) => {
     switch (type) {
-        case SET_LOCAL_DATA:
+        case LOAD_LOCAL_DATA:
             return {
                 ...state,
                 ...payload

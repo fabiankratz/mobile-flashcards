@@ -5,7 +5,7 @@ const APP_STORE_KEY = '@mobile-flashcards:decks'
 export default deviceStorage = {
     getDecks: async function () {
         const result = await AsyncStorage.getItem(APP_STORE_KEY)
-        return result !== null ? JSON.parse(result) : {}
+        return result !== null && JSON.parse(result)
     },
     saveDeckTitle: async function (title) {
         await AsyncStorage.mergeItem(
@@ -23,8 +23,11 @@ export default deviceStorage = {
             deck.questions.push(card)
             await AsyncStorage.mergeItem(
                 APP_STORE_KEY,
-                JSON.stringify(deck)
+                JSON.stringify({[title]: deck})
             )
         }
+    },
+    clearDecks: async function () {
+        await AsyncStorage.removeItem(APP_STORE_KEY)
     }
 }

@@ -1,14 +1,14 @@
-import { LOAD_LOCAL_DATA, SET_LOCAL_DATA } from './'
+import { LOAD_LOCAL_DATA, LOAD_LOCAL_DATA_ASYNC } from './'
 
-export function setLocalData (data) {
+export function loadLocalData (data) {
     return {
-        type: SET_LOCAL_DATA,
+        type: LOAD_LOCAL_DATA,
         payload: data
     }
 }
 
-export function loadLocalData () {
+export function loadLocalDataAsync () {
     return {
-        type: LOAD_LOCAL_DATA
+        type: LOAD_LOCAL_DATA_ASYNC
     }
 }
