@@ -3,27 +3,20 @@ import { View, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadLocalDataAsync } from '../actions/shared'
-import { startQuizAsync, addResultAsync } from '../actions/quiz'
-import { addCardAsync } from '../actions/cards'
-import { saveDeckTitleAsync } from '../actions/decks'
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './HomeScreen'
+
+const Stack = createStackNavigator()
 
 export const Main = (props) => {
-    const {loadLocalDataAsync, startQuizAsync, loading, addResultAsync, addCardAsync, saveDeckTitleAsync}  = props
+    const {loadLocalDataAsync}  = props
     useEffect(() => {
         loadLocalDataAsync()
     }, [loadLocalDataAsync])
-    useEffect(() => {
-        if (!loading) {
-            //startQuizAsync("hello")
-            //addResultAsync(true)
-            saveDeckTitleAsync("nice")
-            //addCardAsync("nice", {question: "nineee", answer: "teeeen"})
-        }
-    }, [loading, startQuizAsync, addResultAsync, addCardAsync, saveDeckTitleAsync])
     return (
-        <Text>
-            {JSON.stringify(props)}
-        </Text>
+        <Stack.Navigator>
+            <Stack.Screen name="Home" component={HomeScreen} />
+        </Stack.Navigator>
     )
 }
 
@@ -37,10 +30,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     loadLocalDataAsync,
-    startQuizAsync,
-    addResultAsync,
-    addCardAsync,
-    saveDeckTitleAsync,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
