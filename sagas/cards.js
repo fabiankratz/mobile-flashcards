@@ -4,9 +4,9 @@ import deviceStorage from '../utils/api'
 import { put, call, takeLatest } from 'redux-saga/effects'
 
 function* addCardWorker ({payload}) {
-    yield put(addCard(payload.card))
+    yield put(addCard(payload.title, payload.card))
     try {
-        yield call([deviceStorage, 'addCardToDeck'], payload.title, payloard.card)
+        yield call([deviceStorage, 'addCardToDeck'], payload.title, payload.card)
     } catch (e) {
         console.log(e)
         yield put(removeLastCard(payload.title))

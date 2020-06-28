@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native'
 
-export const HomeScreen = (props) => {
+export const Home = (props) => {
     const { navigation, decks } = props
     return (
         <View>
@@ -16,6 +16,13 @@ export const HomeScreen = (props) => {
                     </Text>
                 </TouchableOpacity>
             ))}
+            <TouchableOpacity
+                onPress={() => navigation.navigate('AddDeck')}
+            >
+                <Text>
+                    Add deck
+                </Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -29,4 +36,4 @@ const mapDispatchToProps = {
     
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

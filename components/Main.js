@@ -4,8 +4,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loadLocalDataAsync } from '../actions/shared'
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './HomeScreen'
+import Home from './Home'
 import DeckDetails from './DeckDetails'
+import AddDeck from './AddDeck'
+import Quiz from './Quiz'
+import AddCard from './AddCard'
 
 const Stack = createStackNavigator()
 
@@ -16,8 +19,11 @@ export const Main = (props) => {
     }, [loadLocalDataAsync])
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="DeckDetails" component={DeckDetails} />
+            <Stack.Screen name="AddDeck" component={AddDeck} />
+            <Stack.Screen name="AddCard" component={AddCard} />
+            <Stack.Screen name="Quiz" component={Quiz} />
         </Stack.Navigator>
     )
 }

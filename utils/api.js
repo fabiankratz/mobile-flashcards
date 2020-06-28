@@ -15,7 +15,7 @@ export default deviceStorage = {
     saveDeckTitle: async function (title) {
         await AsyncStorage.mergeItem(
             APP_STORE_KEY + 'decks',
-            JSON.stringify({ [title]: {title, questions: []} })
+            JSON.stringify({ [title]: {title, cards: []} })
         )
     },
     getDeck: async function (title) {
@@ -25,7 +25,10 @@ export default deviceStorage = {
     addCardToDeck: async function (title, card) {
         const deck = await this.getDeck(title)
         if (deck) {
-            deck.questions.push(card)
+            if (!(deck.cards instanceof Array)) {
+                deck.cards = []
+            }
+            deck.cards.push(card)
             await AsyncStorage.mergeItem(
                 APP_STORE_KEY + 'decks',
                 JSON.stringify({[title]: deck})
