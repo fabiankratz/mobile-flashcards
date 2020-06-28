@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { loadLocalDataAsync } from '../actions/shared'
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen'
+import DeckDetails from './DeckDetails'
 
 const Stack = createStackNavigator()
 
@@ -16,6 +17,7 @@ export const Main = (props) => {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="DeckDetails" component={DeckDetails} />
         </Stack.Navigator>
     )
 }
