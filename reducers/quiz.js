@@ -23,12 +23,12 @@ export default (state = initialState, { type, payload }) => {
         case ADD_RESULT:
             return {
                 ...state,
-                results: [...state.results, payload.result]
+                results: [...(state.results || []), payload.result]
             }
         case REMOVE_LAST_RESULT:
             return {
                 ...state,
-                results: state.results.slice(0, state.results.length-1)
+                results: state.results?.slice(0, state.results.length-1) || []
             }
         default:
             return state

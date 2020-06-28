@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { startQuizAsync } from '../actions/quiz'
 
 export const DeckDetails = (props) => {
-    const { route, navigation, startQuizAsync } = props
+    const { route, navigation, startQuizAsync, decks } = props
     return (
         <View>
             <Text>
@@ -13,8 +13,9 @@ export const DeckDetails = (props) => {
             <TouchableOpacity
                 onPress={() => {
                     startQuizAsync(route.params.title)
-                    navigation.navigate("Quiz")
+                    navigation.navigate("Quiz", {title: route.params.title})
                 }}
+                disabled={!decks[route.params.title].cards?.length}
             >
                 <Text>
                     Start Quiz
@@ -33,7 +34,8 @@ export const DeckDetails = (props) => {
     )
 }
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = ({decks}, props) => ({
+    decks,
     ...props
 })
 

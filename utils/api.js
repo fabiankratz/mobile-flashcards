@@ -6,21 +6,21 @@ export default deviceStorage = {
     getData: async function () {
         const quiz = await this.getQuiz()
         const decks = await this.getDecks()
-        return {quiz: quiz || null, decks: decks || null}
+        return {quiz, decks}
     },
     getDecks: async function () {
         const result = await AsyncStorage.getItem(APP_STORE_KEY + 'decks')
-        return result !== null && JSON.parse(result)
+        return result !== null ? JSON.parse(result) : {}
     },
     saveDeckTitle: async function (title) {
         await AsyncStorage.mergeItem(
             APP_STORE_KEY + 'decks',
-            JSON.stringify({ [title]: {title, cards: []} })
+            JSON.stringify({ [title]: {title} })
         )
     },
     getDeck: async function (title) {
         const result = await AsyncStorage.getItem(APP_STORE_KEY + 'decks')
-        return result !== null && JSON.parse(result)[title]
+        return result !== null ? JSON.parse(result)[title] : {}
     },
     addCardToDeck: async function (title, card) {
         const deck = await this.getDeck(title)
@@ -38,6 +38,9 @@ export default deviceStorage = {
     addResult: async function (res) {
         const quiz = await this.getQuiz()
         if (quiz) {
+            if (!(quiz.results instanceof Array)) {
+                quiz.results = []
+            }
             quiz.results.push(res)
             await AsyncStorage.mergeItem(
                 APP_STORE_KEY + 'quiz',
@@ -50,13 +53,13 @@ export default deviceStorage = {
         if (result !== null) {
             return JSON.parse(result)
         } else {
-            return null
+            return {}
         }
     },
     startQuiz: async function (title) {
         await AsyncStorage.mergeItem(
             APP_STORE_KEY + 'quiz',
-            JSON.stringify({title, results: []})
+            JSON.stringify({title})
         )
     },
     endQuiz: async function () {

@@ -12,11 +12,11 @@ import AddCard from './AddCard'
 
 const Stack = createStackNavigator()
 
-export const Main = (props) => {
-    const {loadLocalDataAsync}  = props
+export const Main = ({loading, loadLocalDataAsync}) => {
     useEffect(() => {
         loadLocalDataAsync()
     }, [loadLocalDataAsync])
+    if (loading) return null
     return (
         <Stack.Navigator>
             <Stack.Screen name="Home" component={Home} />
@@ -32,8 +32,8 @@ Main.propTypes = {
 
 }
 
-const mapStateToProps = (state) => ({
-    ...state
+const mapStateToProps = ({loading}) => ({
+    loading
 })
 
 const mapDispatchToProps = {
