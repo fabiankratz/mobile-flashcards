@@ -7,21 +7,16 @@ export function setLocalNotification () {
     AsyncStorage.getItem(NOTIFICATION_KEY)
         .then(JSON.parse)
         .then((data) => {
-        console.log(data)
-        if (data === null) {
-            Permissions.askAsync(Permissions.NOTIFICATIONS)
-            .then(({ status }) => {
-                console.log(status)
-                if (status === 'granted') {
-                    AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
-                }
-            })
-        }
+            console.log(data)
+            if (data === null) {
+                // ask for permissions 
+                // if granted ... 
+                AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+            }
         }).catch(console.log)
 }
 export function clearLocalNotification () {
     console.log("clearing notification")
-    console.log(Notifications)
     return AsyncStorage.removeItem(NOTIFICATION_KEY)
         .then()
 }

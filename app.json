@@ -22,7 +22,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "io.mobile-flashcards.client"
+    },
+    "android": {
+      "package": "io.mobile-flashcards.client"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
