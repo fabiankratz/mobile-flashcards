@@ -20,10 +20,10 @@ export const Main = ({loading, loadLocalDataAsync}) => {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="DeckDetails" component={DeckDetails} options={({route}) => ({title: "Details: " + route.params.title})}/>
-            <Stack.Screen name="AddDeck" component={AddDeck} options={({route}) => ({title: "Add deck"})}/>
-            <Stack.Screen name="AddCard" component={AddCard} options={({route}) => ({title: "Add Card to: " + route.params.title})}/>
-            <Stack.Screen name="Quiz" component={Quiz} options={({route}) => ({title: "Quiz: " + route.params.title})}/>
+            <Stack.Screen name="DeckDetails" component={DeckDetails} options={({route}) => ({title: route.params.title})}/>
+            <Stack.Screen name="AddDeck" component={AddDeck} options={({route}) => ({title: "Create New Deck"})}/>
+            <Stack.Screen name="AddCard" component={AddCard} options={({route}) => ({title: "Add Card"})}/>
+            <Stack.Screen name="Quiz" component={Quiz} options={({route}) => ({title: "Quiz"})}/>
         </Stack.Navigator>
     )
 }
