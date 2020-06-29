@@ -1,4 +1,4 @@
-import { START_QUIZ, END_QUIZ, ADD_RESULT, START_QUIZ_ASYNC, END_QUIZ_ASYNC, ADD_RESULT_ASYNC, REMOVE_LAST_RESULT } from './'
+import { START_QUIZ, END_QUIZ, ADD_RESULT, START_QUIZ_ASYNC, END_QUIZ_ASYNC, ADD_RESULT_ASYNC, REMOVE_LAST_RESULT, LOAD_QUIZ_STATE } from './'
 
 export function startQuiz (title) {
     return {
@@ -42,5 +42,12 @@ export function addResultAsync (result) {
 export function removeLastResult () {
     return {
         type: REMOVE_LAST_RESULT,
+    }
+}
+
+export function loadQuizState (quiz) {
+    return {
+        type: LOAD_QUIZ_STATE,
+        payload: {quiz}
     }
 }

@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Provider} from 'react-redux'
 import { createStore } from 'redux'
 import middleware, { sagaMiddleware } from './middleware'
@@ -8,12 +8,16 @@ import Main from './components/Main'
 import rootSaga from './sagas'
 import {composeWithDevTools } from 'redux-devtools-extension'
 import { NavigationContainer } from '@react-navigation/native';
+import { setLocalNotification } from './utils/notifications'
 
 const store = createStore(reducer, composeWithDevTools(middleware))
 
 sagaMiddleware.run(rootSaga)
 
 export default function App() {
+  useEffect(() => {
+    setLocalNotification()
+  }, [setLocalNotification])
   return (
     <Provider store={store}>
       <NavigationContainer>

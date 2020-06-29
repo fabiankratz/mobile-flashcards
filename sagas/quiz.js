@@ -1,5 +1,5 @@
 import { END_QUIZ_ASYNC , START_QUIZ_ASYNC, ADD_RESULT_ASYNC } from '../actions'
-import { startQuiz, endQuiz, addResult, removeLastResult } from '../actions/quiz'
+import { startQuiz, endQuiz, addResult, removeLastResult, loadQuizState } from '../actions/quiz'
 import { takeLeading, put, call, takeEvery } from 'redux-saga/effects'
 import deviceStorage from '../utils/api'
 

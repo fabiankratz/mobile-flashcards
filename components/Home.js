@@ -20,7 +20,7 @@ export const Home = (props) => {
                                     { deck.title }
                                 </Text>
                                 <Text style={styles["deck__num-cards"]}>
-                                    { deck.cards?.length || 0} Cards
+                                {deck.cards?.length || 0} Card{deck.cards?.length !== 1 && "s"}
                                 </Text>
                                 <Text style={styles["deck__emoji"]}>
                                     😍

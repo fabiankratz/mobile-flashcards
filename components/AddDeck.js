@@ -21,7 +21,7 @@ export const AddDeck = (props) => {
                 style={styles["button"]}
                 onPress={() => {
                     saveDeckTitleAsync(title)
-                    navigation.navigate('Home')
+                    navigation.navigate('DeckDetails', {title})
                 }}
             >
                 <Text style={{color: "white", textAlign: "center"}}>

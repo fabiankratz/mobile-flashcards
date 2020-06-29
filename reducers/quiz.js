@@ -1,4 +1,4 @@
-import { START_QUIZ, END_QUIZ, ADD_RESULT, LOAD_LOCAL_DATA, REMOVE_LAST_RESULT } from '../actions'
+import { START_QUIZ, END_QUIZ, ADD_RESULT, LOAD_LOCAL_DATA, REMOVE_LAST_RESULT, LOAD_QUIZ_STATE } from '../actions'
 
 const initialState = {
     title: "",
@@ -30,6 +30,8 @@ export default (state = initialState, { type, payload }) => {
                 ...state,
                 results: state.results?.slice(0, state.results.length-1) || []
             }
+        case LOAD_QUIZ_STATE:
+            return payload.quiz
         default:
             return state
     }

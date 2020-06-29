@@ -10,16 +10,19 @@ export const DeckDetails = (props) => {
     return (
         <View style={styles["container"]}>
             <TouchableOpacity
-                style={[styles["button"], {backgroundColor: "#f45"}]}
+                style={[styles["button"], {backgroundColor: "#d69600"}]}
                 onPress={() => {
                     startQuizAsync(route.params.title)
                     navigation.navigate("Quiz", {title: route.params.title})
                 }}
                 disabled={!decks[route.params.title].cards?.length}
             >
-                <MaterialCommunityIcons name="comment-question" size={100} color="#faa" />
+                <MaterialCommunityIcons name="comment-question" size={100} color="#facb2f" />
                 <Text style={styles["button__text"]}>
                     Start Quiz
+                </Text>
+                <Text style={{color: "white"}}>
+                    ({decks[route.params.title]?.cards?.length || 0} Card{decks[route.params.title]?.cards?.length !== 1 && "s"})
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity
