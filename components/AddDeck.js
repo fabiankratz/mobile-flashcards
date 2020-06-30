@@ -2,32 +2,55 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import { saveDeckTitleAsync } from '../actions/decks'
+import EmojiBoard from 'react-native-emoji-board'
 
 export const AddDeck = (props) => {
     const [title, onChangeTitle] = useState('');
     const [focus, setFocus] = useState(false)
+    const [showEmojiBoard, setEmojiBoardVisibility] = useState(false)
+    const [emoji, setEmoji] = useState('📚')
+    const color = '#34f'
     const { saveDeckTitleAsync, navigation } = props
     return (
-        <View style={styles["container"]}>
-            <TextInput
-                placeholder="e.g. Spanish Vocabulary"
-                onFocus={() => setFocus(true)}
-                onBlur={() => setFocus(false)}
-                style={[styles["textinput"], focus && styles["--bb-green"]]}
-                onChangeText={text => onChangeTitle(text)}
-                value={title}
+        <View style={{flex: 1}}>
+            <View style={styles["container"]}>
+                <TextInput
+                    placeholder="e.g. Spanish Vocabulary"
+                    onFocus={() => setFocus(true)}
+                    onBlur={() => setFocus(false)}
+                    style={[styles["textinput"], focus && styles["--bb-green"]]}
+                    onChangeText={text => onChangeTitle(text)}
+                    value={title}
+                />
+                <TouchableOpacity
+                    onPress={() => setEmojiBoardVisibility(true)}
+                    onBlur={() => setEmojiBoardVisibility(false)}
+
+                >
+                    <Text style={{fontSize: 20, marginTop: 20, color: "blue"}}>
+                        Select an emoji: {emoji}
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles["button"]}
+                    onPress={() => {
+                        saveDeckTitleAsync({title, emoji, color})
+                        navigation.navigate('DeckDetails', {title})
+                    }}
+                >
+                    <Text style={{color: "white", textAlign: "center"}}>
+                        Submit
+                    </Text>
+                </TouchableOpacity>
+            </View>
+            <EmojiBoard 
+                showBoard={showEmojiBoard} 
+                onClick={({code}) => {
+                    setEmoji(code)
+                    setEmojiBoardVisibility(false)
+                }} 
+                containerStyle={{alignSelf: "flex-end"}}
             />
-            <TouchableOpacity
-                style={styles["button"]}
-                onPress={() => {
-                    saveDeckTitleAsync(title)
-                    navigation.navigate('DeckDetails', {title})
-                }}
-            >
-                <Text style={{color: "white", textAlign: "center"}}>
-                    Submit
-                </Text>
-            </TouchableOpacity>
         </View>
     )
 }
@@ -42,7 +65,7 @@ const mapDispatchToProps = {
 
 const styles = StyleSheet.create({
     "container": {
-        flex: 1,
+        //flex: 1,
         justifyContent: "center",
         alignItems: "center",
         margin: 50,

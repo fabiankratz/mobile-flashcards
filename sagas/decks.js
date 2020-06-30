@@ -4,9 +4,9 @@ import deviceStorage from '../utils/api'
 import { put, call, takeLatest } from 'redux-saga/effects'
 
 function* saveDeckTitleWorker ({payload}) {
-    yield put(saveDeckTitle(payload.title))
+    yield put(saveDeckTitle(payload))
     try {
-        yield call([deviceStorage, 'saveDeckTitle'], payload.title)
+        yield call([deviceStorage, 'saveDeckTitle'], payload)
     } catch (e) {
         console.log(e)
         yield put(removeDeckTitle(payload.title))

@@ -13,9 +13,9 @@ export const Home = (props) => {
                         onPress={() => navigation.navigate('DeckDetails', {title: deck.title})}
                     >
                         <View style={styles["deck-list__deck"]}>
-                            <View style={[styles["deck__card"], styles["--pos-abs"], styles["deck__third-card"]]}></View>
-                            <View style={[styles["deck__card"], styles["--pos-abs"], styles["deck__second-card"]]}></View>
-                            <View style={[styles["deck__card"], styles["deck__first-card"]]}>
+                            <View style={[styles["deck__card"], styles["--pos-abs"], styles["deck__third-card"], {backgroundColor: deck.color, opacity: 0.7}]}></View>
+                            <View style={[styles["deck__card"], styles["--pos-abs"], styles["deck__second-card"], {backgroundColor: deck.color, opacity: 0.8}]}></View>
+                            <View style={[styles["deck__card"], styles["deck__first-card"], {backgroundColor: deck.color}]}>
                                 <Text style={styles["deck__title"]}>
                                     { deck.title }
                                 </Text>
@@ -23,7 +23,7 @@ export const Home = (props) => {
                                 {deck.cards?.length || 0} Card{deck.cards?.length !== 1 && "s"}
                                 </Text>
                                 <Text style={styles["deck__emoji"]}>
-                                    😍
+                                    {deck.emoji}
                                 </Text>
                             </View>
                         </View>

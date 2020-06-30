@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const APP_STORE_KEY = '@mobile-flashcards:'
 
+//AsyncStorage.removeItem(APP_STORE_KEY + 'decks')
+
 export default deviceStorage = {
     getData: async function () {
         const quiz = await this.getQuiz()
@@ -12,10 +14,10 @@ export default deviceStorage = {
         const result = await AsyncStorage.getItem(APP_STORE_KEY + 'decks')
         return result !== null ? JSON.parse(result) : {}
     },
-    saveDeckTitle: async function (title) {
+    saveDeckTitle: async function (deckInfo) {
         await AsyncStorage.mergeItem(
             APP_STORE_KEY + 'decks',
-            JSON.stringify({ [title]: {title} })
+            JSON.stringify({ [deckInfo.title]: {...deckInfo} })
         )
     },
     getDeck: async function (title) {

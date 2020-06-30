@@ -13,7 +13,7 @@ export default (state = {}, { type, payload }) => {
             return {
                 ...state,
                 [payload.title]: {
-                    title: payload.title,
+                    ...payload
                 }
             }
         case REMOVE_DECK_TITLE: 

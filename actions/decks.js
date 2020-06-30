@@ -1,19 +1,19 @@
 import { SAVE_DECK_TITLE, REMOVE_DECK_TITLE, SAVE_DECK_TITLE_ASYNC } from './'
 
-export function saveDeckTitle (title) {
+export function saveDeckTitle (deckInfo) {
     return {
         type: SAVE_DECK_TITLE,
         payload: {
-            title
+            ...deckInfo
         }
     }
 }
 
-export function saveDeckTitleAsync (title) {
+export function saveDeckTitleAsync (deckInfo) {
     return {
         type: SAVE_DECK_TITLE_ASYNC,
         payload: {
-            title
+            ...deckInfo
         }
     }
 }
