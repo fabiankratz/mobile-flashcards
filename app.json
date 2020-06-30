@@ -26,7 +26,8 @@
       "bundleIdentifier": "io.mobile-flashcards.client"
     },
     "android": {
-      "package": "io.mobile-flashcards.client"
+      "package": "io.mobile-flashcards.client",
+      "useNextNotificationsApi": true
     },
     "entryPoint": "node_modules/expo/AppEntry.js"
   }
