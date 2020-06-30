@@ -9,6 +9,9 @@ import rootSaga from './sagas'
 import {composeWithDevTools } from 'redux-devtools-extension'
 import { NavigationContainer } from '@react-navigation/native';
 import { setLocalNotification } from './utils/notifications'
+import {YellowBox} from 'react-native';
+// Warning caused by expo-notifications, as it imports AsyncStorage the old way for backwards compatibility
+YellowBox.ignoreWarnings(['Warning: AsyncStorage has been extracted from react-native core']);
 
 const store = createStore(reducer, composeWithDevTools(middleware))
 
