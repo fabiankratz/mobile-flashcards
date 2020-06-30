@@ -3,13 +3,16 @@ import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import { saveDeckTitleAsync } from '../actions/decks'
 import EmojiBoard from 'react-native-emoji-board'
+import ColorPalette from 'react-native-color-palette'
+import { Dimensions } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export const AddDeck = (props) => {
     const [title, onChangeTitle] = useState('');
     const [focus, setFocus] = useState(false)
     const [showEmojiBoard, setEmojiBoardVisibility] = useState(false)
     const [emoji, setEmoji] = useState('📚')
-    const color = '#34f'
+    const [color, setColor] = useState('#000000')
     const { saveDeckTitleAsync, navigation } = props
     return (
         <View style={{flex: 1}}>
@@ -27,10 +30,21 @@ export const AddDeck = (props) => {
                     onBlur={() => setEmojiBoardVisibility(false)}
 
                 >
-                    <Text style={{fontSize: 20, marginTop: 20, color: "blue"}}>
+                    <Text style={{fontSize: 20, marginTop: 20}}>
                         Select an emoji: {emoji}
                     </Text>
                 </TouchableOpacity>
+                <ColorPalette
+                    titleStyles={{marginTop: 20, fontSize: 20, color}}
+                    paletteStyles={{marginTop: 10}}
+                    onChange={color => setColor(color)}
+                    value={color}
+                    colors={['#C0392B', '#E74C3C', '#9B59B6', '#8E44AD', '#2980B9']}
+                    title={"Choose a color:"}
+                    icon={
+                        <MaterialCommunityIcons name="circle" size={24} color={color} />
+                    }
+                /> 
                 <TouchableOpacity
                     style={styles["button"]}
                     onPress={() => {
