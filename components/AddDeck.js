@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 import { saveDeckTitleAsync } from '../actions/decks'
 import EmojiBoard from 'react-native-emoji-board'
 import ColorPalette from 'react-native-color-palette'
-import { Dimensions } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export const AddDeck = (props) => {
@@ -14,19 +13,27 @@ export const AddDeck = (props) => {
     const [emoji, setEmoji] = useState('📚')
     const [color, setColor] = useState('#000000')
     const { saveDeckTitleAsync, navigation } = props
+    const titleInput = useRef(null);
     return (
         <View style={{flex: 1}}>
             <View style={styles["container"]}>
                 <TextInput
                     placeholder="e.g. Spanish Vocabulary"
-                    onFocus={() => setFocus(true)}
+                    onFocus={() => {
+                        setEmojiBoardVisibility(false)
+                        setFocus(true)
+                    }}
                     onBlur={() => setFocus(false)}
                     style={[styles["textinput"], focus && styles["--bb-green"]]}
                     onChangeText={text => onChangeTitle(text)}
                     value={title}
+                    ref={titleInput}
                 />
                 <TouchableOpacity
-                    onPress={() => setEmojiBoardVisibility(true)}
+                    onPress={() => {
+                        titleInput.current.blur()
+                        setEmojiBoardVisibility(true)
+                    }}
                     onBlur={() => setEmojiBoardVisibility(false)}
 
                 >

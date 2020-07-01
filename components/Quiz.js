@@ -13,10 +13,10 @@ export const Quiz = ({ navigation, endQuizAsync, startQuizAsync, addResultAsync,
     if (finished) {
         return (
             <View style={styles["container"]}>
-                <Text style={styles["performance"]}>
+                <Text style={[styles["performance"], {width: "100%", textAlign: "center"}]}>
                     Here is how you performed:
                 </Text>
-                <Text style={{color: "#393", fontWeight: "bold", fontSize: 30}}>
+                <Text style={{color: "#393", fontWeight: "bold", fontSize: 20, width: "100%", textAlign: "center"}}>
                     {score} 
                 </Text>
                 <View style={[styles["buttons-container"], {paddingHorizontal: 30}]}>
@@ -76,6 +76,7 @@ export const Quiz = ({ navigation, endQuizAsync, startQuizAsync, addResultAsync,
                                     <FontAwesome name="question-circle" size={24} color="#ebc636"/>
                                 </View>
                             </View>
+                            <Text style={{color: "grey"}}>Tap card to see the answer</Text>
                             <Text style={styles["flip-card__text"]}>
                                 {currentCard?.question}
                             </Text>
@@ -199,7 +200,7 @@ const styles = StyleSheet.create({
     },
     "performance": {
         marginHorizontal: 60,
-        fontSize: 20,
+        fontSize: 15,
     }
 })
 

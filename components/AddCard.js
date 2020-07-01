@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         paddingVertical: 10,
         fontWeight: "bold",
+        width: "100%",
     }
 })
 

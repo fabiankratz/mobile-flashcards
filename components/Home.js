@@ -6,6 +6,7 @@ export const Home = (props) => {
     const { navigation, decks } = props
     return (
         <View style={styles["container"]}>
+          { !Object.keys(decks).length && <Text style={{fontSize: 20, width: "100%", textAlign: "center", marginTop: 40}}>You have not created any decks</Text>}
             <ScrollView style={styles["deck-list"]} horizontal={true}>
                 { Object.values(decks).map(deck => (
                     <TouchableOpacity 

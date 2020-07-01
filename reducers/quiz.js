@@ -17,6 +17,7 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 title: payload.title,
+                results: []
             }
         case END_QUIZ:
             return initialState

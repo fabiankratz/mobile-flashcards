@@ -20,7 +20,7 @@ First, make sure that you have either
     a. an android emulator up and running, or
     b. an Android phone connected via USB
 
-Then, start the development server by issuing `npx react-native start` in your terminal from the root directory. The App should open on your device.
+Then, start the development server by issuing `yarn` or `npm start` or directly on android with `npm android` in your terminal from the root directory. The App should open on your device.
 
 A debugger will be available at `localhost:8081`
 
